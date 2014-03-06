@@ -1,5 +1,27 @@
 ## Version History
 
+#### 20140225
+* Add JRuby 1.7.11
+* Add support for JRuby 9000 bundled with the Graal VM
+
+#### 20140224.1
+* Add Ruby 2.0.0-p451
+* Add Ruby 2.1.1
+
+#### 20140224
+* Add Ruby 1.9.3-p545
+* Add mruby 1.0.0
+* Improve Java 7 detection
+
+#### 20140214
+* Install libyaml 0.1.5 for Ruby 2.x
+* Require Java 7 for jruby-9000-dev
+* Update MagLev branch from master-1.9 to master
+
+#### 20140210
+* Add Rubinius 2.2.4
+* Add JRuby 9000-dev
+
 #### 20140204
 * Add Rubinius 2.2.4
 * Update libyaml to version 0.1.5
