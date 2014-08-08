@@ -1,6 +1,3 @@
-[submodule "plugins/ruby-build"]
-	path = plugins/ruby-build
-	url = https://github.com/sstephenson/ruby-build.git
 [submodule "plugins/rbenv-gem-rehash"]
 	path = plugins/rbenv-gem-rehash
 	url = https://github.com/sstephenson/rbenv-gem-rehash.git
