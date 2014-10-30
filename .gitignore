@@ -6,3 +6,6 @@
 /sources
 /gems/
 /cache
+/libexec/*.dylib
+/src/Makefile
+/src/*.o
