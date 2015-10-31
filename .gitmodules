@@ -1,6 +1,3 @@
-[submodule "plugins/rbenv-gem-rehash"]
-	path = plugins/rbenv-gem-rehash
-	url = https://github.com/sstephenson/rbenv-gem-rehash.git
 [submodule "plugins/rbenv-ctags"]
 	path = plugins/rbenv-ctags
 	url = https://github.com/tpope/rbenv-ctags.git
