@@ -13,7 +13,7 @@ bulletproof deployments.
 
 **Rock-solid in production.** Your application's executables are its
   interface with ops. With rbenv and [Bundler
-  binstubs](https://github.com/sstephenson/rbenv/wiki/Understanding-binstubs)
+  binstubs](https://github.com/rbenv/rbenv/wiki/Understanding-binstubs)
   you'll never again need to `cd` in a cron job or Chef recipe to
   ensure you've selected the right runtime. The Ruby version
   dependency lives in one place—your app—so upgrades and rollbacks are
@@ -24,12 +24,12 @@ bulletproof deployments.
   you tailor it to suit your needs. Compile your own Ruby versions, or
   use the [ruby-build][]
   plugin to automate the process. Specify per-application environment
-  variables with [rbenv-vars](https://github.com/sstephenson/rbenv-vars).
+  variables with [rbenv-vars](https://github.com/rbenv/rbenv-vars).
   See more [plugins on the
-  wiki](https://github.com/sstephenson/rbenv/wiki/Plugins).
+  wiki](https://github.com/rbenv/rbenv/wiki/Plugins).
 
 [**Why choose rbenv over
-RVM?**](https://github.com/sstephenson/rbenv/wiki/Why-rbenv%3F)
+RVM?**](https://github.com/rbenv/rbenv/wiki/Why-rbenv%3F)
 
 ## Table of Contents
 
@@ -43,8 +43,9 @@ RVM?**](https://github.com/sstephenson/rbenv/wiki/Why-rbenv%3F)
     * [Upgrading](#upgrading)
   * [Homebrew on Mac OS X](#homebrew-on-mac-os-x)
   * [How rbenv hooks into your shell](#how-rbenv-hooks-into-your-shell)
-  * [Installing Ruby Versions](#installing-ruby-versions)
-  * [Uninstalling Ruby Versions](#uninstalling-ruby-versions)
+  * [Installing Ruby versions](#installing-ruby-versions)
+    * [Installing Ruby gems](#installing-ruby-gems)
+  * [Uninstalling Ruby versions](#uninstalling-ruby-versions)
   * [Uninstalling rbenv](#uninstalling-rbenv)
 * [Command Reference](#command-reference)
   * [rbenv local](#rbenv-local)
@@ -158,7 +159,14 @@ easy to fork and contribute any changes back upstream.
 1. Check out rbenv into `~/.rbenv`.
 
     ~~~ sh
-    $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+    $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+    ~~~
+
+    Optionally, try to compile dynamic bash extension to speed up rbenv. Don't
+    worry if it fails; rbenv will still work normally:
+
+    ~~~
+    $ cd ~/.rbenv && src/configure && make -C src
     ~~~
 
 2. Add `~/.rbenv/bin` to your `$PATH` for access to the `rbenv`
@@ -265,7 +273,7 @@ opposed to this idea. Here's what `rbenv init` actually does:
 Run `rbenv init -` for yourself to see exactly what happens under the
 hood.
 
-### Installing Ruby Versions
+### Installing Ruby versions
 
 The `rbenv install` command doesn't ship with rbenv out of the box, but
 is provided by the [ruby-build][] project. If you installed it either
@@ -286,7 +294,30 @@ that directory can also be a symlink to a Ruby version installed
 elsewhere on the filesystem. rbenv doesn't care; it will simply treat
 any entry in the `versions/` directory as a separate Ruby version.
 
-### Uninstalling Ruby Versions
+#### Installing Ruby gems
+
+Once you've installed some Ruby versions, you'll want to install gems.
+First, ensure that the target version for your project is the one you want by
+checking `rbenv version` (see [Command Reference](#command-reference)). Select
+another version using `rbenv local 2.0.0-p247`, for example. Then, proceed to
+install gems as you normally would:
+
+```sh
+$ gem install bundler
+```
+
+**You don't need sudo** to install gems. Typically, the Ruby versions will be
+installed and writeable by your user. No extra privileges are required to
+install gems.
+
+Check the location where gems are being installed with `gem env`:
+
+```sh
+$ gem env home
+# => ~/.rbenv/versions/<ruby-version>/lib/ruby/gems/...
+```
+
+### Uninstalling Ruby versions
 
 As time goes on, Ruby versions you install will accumulate in your
 `~/.rbenv/versions` directory.
@@ -342,11 +373,6 @@ When run without a version number, `rbenv local` reports the currently
 configured local version. You can also unset the local version:
 
     $ rbenv local --unset
-
-Previous versions of rbenv stored local version specifications in a
-file named `.rbenv-version`. For backwards compatibility, rbenv will
-read a local version specified in an `.rbenv-version` file, but a
-`.ruby-version` file in the same directory will take precedence.
 
 ### rbenv global
 
@@ -444,7 +470,7 @@ name | default | description
 ## Development
 
 The rbenv source code is [hosted on
-GitHub](https://github.com/sstephenson/rbenv). It's clean, modular,
+GitHub](https://github.com/rbenv/rbenv). It's clean, modular,
 and easy to understand, even if you're not a shell hacker.
 
 Tests are executed using [Bats](https://github.com/sstephenson/bats):
@@ -453,8 +479,8 @@ Tests are executed using [Bats](https://github.com/sstephenson/bats):
     $ bats test/<file>.bats
 
 Please feel free to submit pull requests and file bugs on the [issue
-tracker](https://github.com/sstephenson/rbenv/issues).
+tracker](https://github.com/rbenv/rbenv/issues).
 
 
-  [ruby-build]: https://github.com/sstephenson/ruby-build#readme
-  [hooks]: https://github.com/sstephenson/rbenv/wiki/Authoring-plugins#rbenv-hooks
+  [ruby-build]: https://github.com/rbenv/ruby-build#readme
+  [hooks]: https://github.com/rbenv/rbenv/wiki/Authoring-plugins#rbenv-hooks

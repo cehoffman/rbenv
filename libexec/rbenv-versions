@@ -9,8 +9,13 @@ set -e
 
 unset bare
 unset skip_aliases
+# Provide rbenv completions
 for arg; do
   case "$arg" in
+  --complete )
+    echo --bare
+    echo --skip-aliases
+    exit ;;
   --bare ) bare=1 ;;
   --skip-aliases ) skip_aliases=1 ;;
   * )
@@ -22,7 +27,7 @@ done
 
 versions_dir="${RBENV_ROOT}/versions"
 
-if ! enable -f "${BASH_SOURCE%/*}"/../libexec/rbenv-realpath.dylib realpath 2>/dev/null; then
+if ! enable -f "${BASH_SOURCE%/*}"/rbenv-realpath.dylib realpath 2>/dev/null; then
   if [ -n "$RBENV_NATIVE_EXT" ]; then
     echo "rbenv: failed to load \`realpath' builtin" >&2
     exit 1
