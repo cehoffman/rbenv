@@ -2,3 +2,4 @@ bundler
 rubygems-bundler
 wirb
 fancy_irb
+pry
