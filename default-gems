@@ -3,3 +3,4 @@ rubygems-bundler
 wirb
 fancy_irb
 pry
+gem-ctags
