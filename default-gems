@@ -3,4 +3,8 @@ rubygems-bundler
 wirb
 fancy_irb
 pry
+pry-doc
+pry-byebug
 gem-ctags
+yard
+awesome_print
